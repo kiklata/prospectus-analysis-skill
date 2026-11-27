@@ -64,11 +64,19 @@ description: "深度分析招股说明书（A股/港股/美股IPO）：基于《
 结论记录：___（Biotech 调整：跳过 Z/M，重点计算现金跑道月数）
 ```
 
-**C3 — 可比公司数据**（`/hithink-finance`）
+**C3 — 可比公司数据**（`/hithink-finance` + 港美股补充）
 ```
-执行：调用 /hithink-finance，获取同行业可比公司 PE/PB/EV 数据
-结论记录：___
+执行1：调用 /hithink-finance，获取A股同行业可比公司 PE/PB/EV 数据
+执行2（港股可比公司）：WebFetch https://finance.yahoo.com/quote/{ticker}.HK
+  获取字段：trailingPE / priceToBook / enterpriseValue / revenueGrowth / grossMargins
+  港股代码格式：腾讯=0700.HK / 药明生物=2269.HK / 百济神州=6160.HK
+执行3（美股可比公司）：WebFetch https://stockanalysis.com/stocks/{ticker}/financials/
+  或 WebSearch "{公司名} {ticker} PE PB EV EBITDA gross margin site:finance.yahoo.com OR site:macrotrends.net"
+  美股代码格式：直接用 ticker，如 PFE / MRNA / ABBV
+结论记录：___（三市场可比公司估值对比表）
 ```
+
+> ⚠️ **港美股数据说明**：`/hithink-finance` 仅覆盖A股；港股和美股可比公司数据通过 WebFetch/WebSearch 从 Yahoo Finance、Stockanalysis、Macrotrends 获取。数据时效以查询当日为准，须在输出中标注查询日期。
 
 **C4 — 研报（需用户确认后执行）**（`/report-cli`）
 ```
