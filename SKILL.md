@@ -74,9 +74,13 @@ description: "深度分析招股说明书（A股/港股/美股IPO）：基于《
   或 WebSearch "{公司名} {ticker} PE PB EV EBITDA gross margin site:finance.yahoo.com OR site:macrotrends.net"
   美股代码格式：直接用 ticker，如 PFE / MRNA / ABBV
 结论记录：___（三市场可比公司估值对比表）
+
+网络故障处理：WebFetch 返回 403/429/连接超时时，改用 Bash 通过 Clash 代理重试：
+  curl --proxy http://127.0.0.1:7897 "https://finance.yahoo.com/quote/{ticker}.HK" -L -s | grep -o '"regularMarketPrice":[^,]*'
+  或对 stockanalysis.com 同样加 --proxy http://127.0.0.1:7897
 ```
 
-> ⚠️ **港美股数据说明**：`/hithink-finance` 仅覆盖A股；港股和美股可比公司数据通过 WebFetch/WebSearch 从 Yahoo Finance、Stockanalysis、Macrotrends 获取。数据时效以查询当日为准，须在输出中标注查询日期。
+> ⚠️ **港美股数据说明**：`/hithink-finance` 仅覆盖A股；港股和美股可比公司数据通过 WebFetch/WebSearch 从 Yahoo Finance、Stockanalysis、Macrotrends 获取。数据时效以查询当日为准，须在输出中标注查询日期。连接失败时通过本地 Clash 代理（端口 7897）重试。
 
 **C4 — 研报（需用户确认后执行）**（`/report-cli`）
 ```
