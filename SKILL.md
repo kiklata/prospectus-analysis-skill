@@ -11,7 +11,12 @@ description: "深度分析招股说明书（A股/港股/美股IPO）：基于《
 - 包含"本公司拟发行""本次发行""募集资金用途"等典型招股书表述的文本
 - 用户明确要求分析某公司招股书
 
-> 🔧 **文字提取前置**：若招股书为扫描版/图片型 PDF 无法直接提取文本，优先使用 `/paddleocr-doc-parsing` 结构化解析（保留表格、多栏排版、阅读顺序，输出 Markdown）；纯图片截图则用 `/paddleocr-text-recognition` 提取文字。提取完成后再执行以下分析流程。
+> 🔧 **文字提取前置（按优先级尝试）**：
+> 1. **原生文字层**：先用 `pdftotext`（`pdftotext file.pdf -`）或系统内置 PDF 读取工具提取，有文字则直接分析
+> 2. **结构化解析**：pdftotext 输出为空或乱码时，用 `/paddleocr-doc-parsing` 解析（保留表格、多栏排版、阅读顺序，输出 Markdown）
+> 3. **纯图片 OCR**：前两步均失败，或输入为截图/图片时，用 `/paddleocr-text-recognition` 提取文字
+>
+> 提取成功后再执行以下分析流程。
 
 ---
 
