@@ -83,7 +83,7 @@ description: "深度分析招股说明书（A股/港股/美股IPO）：基于《
 
 **下载确认原则**：涉及下载外部文件的 skill 在执行前须向用户说明将要下载的内容并询问确认，获得同意后再执行。具体分类：
 - **需确认后执行**：`/report-cli`（下载研报文件）
-- **直接执行，无需确认**：`/financial-report-analysis` · `/paperclip` · `/hithink-finance` · `/patentscope:patentscope` · `/esg-screener` · `/buffett` · `/quant-factor-screener` 等所有其他 skill
+- **直接执行，无需确认**：`/financial-report-analysis` · `/paperclip` · `/hithink-finance` · `/patentscope:patentscope` · `/esg-screener` · `/quant-factor-screener` 等所有其他 skill
 
 ## 触发条件
 当用户发送以下内容时自动启用本 skill：
@@ -158,7 +158,6 @@ description: "深度分析招股说明书（A股/港股/美股IPO）：基于《
 
 > 框架来源：和君咨询林子力老师课程"如何快速读懂一家企业"，经书作者整理引用。
 
-> 📌 **护城河与管理层评估**：七步成诗法第2步（企业家）和第7步（人业匹配）的评估直接基于招股书信息完成，参照强弱锚点表判断。**不主动调用 `/buffett`**——其触发范围过宽会接管整个分析流程；如用户明确要求巴菲特视角可单独触发。
 
 目标：看清现象（WHAT 画像）→ 理解机制（WHY 画魂，不变量）→ 预测未来（HOW 反应）。
 
@@ -391,7 +390,6 @@ A股：控股股东36个月、董监高24个月、一般Pre-IPO股东12个月；
 - 五视角速览：发行人想隐藏什么 / 券商如何包装 / PE解禁在哪 / 监管问询重点 / 投资人应质疑什么
 
 ## 二、七步成诗法检验
-> 🔧 `/buffett` 用于企业家（第2步）和人业匹配（第7步）的护城河与管理层诚信评估
 
 | 维度 | 核心发现 | 强/中/弱 | 判断依据 | 来源 |
 |---|---|---|---|---|
@@ -490,7 +488,7 @@ A股：控股股东36个月、董监高24个月、一般Pre-IPO股东12个月；
 - 原书：《招股说明书原来可以这样玩》（何炳喻，2014，和君商学院）——LROE法则、七步成诗法、产业四规律、亿纬锂能逐章案例
 - 姊妹skill：`financial-report-analysis`（财报三表/比率/造假识别/估值八法）
 - A股申报稿：巨潮资讯网；港股：披露易；美股：SEC EDGAR；问询函：沪深交易所审核动态
-- 完整 skill 调用图谱：各章节`🔧`提示，涵盖 `buffett` / `sector-rotation-detector` / `serenity-skill` / `report-cli` / `hithink-finance` / `financial-statement-analyzer` / `esg-screener` / `insider-trading-analyzer` / `undervalued-stock-screener` / `quant-factor-screener` / `tech-hype-vs-fundamentals` / `sentiment-reality-gap` / `event-driven-detector` / `suitability-report-generator` / `paperclip`（生物医药）/ `patentscope:patentscope`（专利）共16个
+- 完整 skill 调用图谱：Gate 系统涵盖 `sector-rotation-detector` / `serenity-skill` / `report-cli` / `hithink-finance` / `financial-statement-analyzer` / `esg-screener` / `insider-trading-analyzer` / `undervalued-stock-screener` / `quant-factor-screener` / `tech-hype-vs-fundamentals` / `sentiment-reality-gap` / `event-driven-detector` / `suitability-report-generator` / `paperclip`（生物医药）/ `patentscope:patentscope`（专利）共15个
 
 ---
 
